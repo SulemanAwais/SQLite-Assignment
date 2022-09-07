@@ -38,4 +38,19 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+    public Boolean Update(String name, String rollNum, Boolean status){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues values=new ContentValues();
+        values.put("STUDENT_NAME",name);
+        values.put("STUDENT_ROLLNUM",rollNum);
+        values.put("ENROLLED_STUDENT",status);
+        long insert =db.insert("StudentDetails",null,values);
+        if (insert==-1)
+        {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }

@@ -8,30 +8,29 @@
     tools:context=".MainActivity">
 
 
-    <TextView
+    <EditText
         android:id="@+id/studentName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name"
-        android:text="Enter your name"
         android:textSize="24dp" />
 
-    <TextView
+    <EditText
         android:id="@+id/studentRollNum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
         android:hint="Roll Number"
-        android:text="Enter your roll number"
         android:textSize="24dp" />
 
     <Switch
         android:id="@+id/IsEnrolled"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_below="@+id/studentName"
+        android:layout_marginTop="54dp"
+
         android:switchMinWidth="10dp"
-        android:switchTextAppearance="Status"
         android:textOff="Not Enrolled"
         android:textOn="Enrolled"
         android:visibility="visible"
@@ -39,16 +38,19 @@
 
     <Button
         android:id="@+id/AddButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_below="@+id/IsEnrolled"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="112dp"
         android:background="#F44336"
-        android:textSize="20dp"
-        android:text="Add Student"/>
+        android:text="Add Student"
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/viewList"
-        android:layout_width="146dp"
+        android:layout_width="246dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/AddButton"
         android:layout_marginStart="144dp"
