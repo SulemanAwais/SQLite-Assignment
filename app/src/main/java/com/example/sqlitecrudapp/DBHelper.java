@@ -23,5 +23,19 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("drop table if exists StudentDetails");
     }
-    
+    public Boolean AddStudent(String name, String rollNum, Boolean status){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues values=new ContentValues();
+        values.put("STUDENT_NAME",name);
+        values.put("STUDENT_ROLLNUM",rollNum);
+        values.put("ENROLLED_STUDENT",status);
+        long insert =db.insert("StudentDetails",null,values);
+        if (insert==-1)
+        {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }
