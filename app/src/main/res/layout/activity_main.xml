@@ -26,24 +26,24 @@
 
     <Button
         android:id="@+id/AddButton"
-        android:layout_width="wrap_content"
+        android:layout_width="223dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/studentRollNum"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="136dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="164dp"
         android:background="#F44336"
         android:text="Add Student"
         android:textSize="20dp" />
 
     <Button
         android:id="@+id/viewList"
-        android:layout_width="246dp"
+        android:layout_width="232dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/AddButton"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="163dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
         android:text="View" />
 
 </RelativeLayout>

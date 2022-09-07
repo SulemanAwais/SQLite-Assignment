@@ -3,6 +3,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -54,13 +55,13 @@ public class MainActivity extends  AppCompatActivity{
             else
             {
                 StringBuffer stringBuffer=new StringBuffer();
+                AlertDialog.Builder alertBuilder=new AlertDialog.Builder(MainActivity.this);
+
                 while(c.moveToNext())
                 {
-                    stringBuffer.append("STUDENT_NAME :"+c.getString(1)+"\n");
-                    stringBuffer.append("STUDENT_ROLLNUM :"+c.getString(2)+"\n");
-                    
+                    stringBuffer.append("Name  :"+c.getString(1)+"\n");
+                    stringBuffer.append("Roll Number  :"+c.getString(2)+"\n");
                 }
-                AlertDialog.Builder alertBuilder=new AlertDialog.Builder(MainActivity.this);
                 alertBuilder.setCancelable(true);
                 alertBuilder.setTitle("STUDENT LIST");
                 alertBuilder.setMessage(stringBuffer.toString());

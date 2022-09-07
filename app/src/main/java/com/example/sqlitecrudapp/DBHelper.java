@@ -53,6 +53,21 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+    public  Boolean delete(String rollNumber){
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor c=db.rawQuery("SELECT * from STUDENT_TABLE where STUDENT_ROLLNUM=?",new String[]{rollNumber});
+        if (c.getCount()>0)
+        {
+            long result=db.delete("STUDENT_TABLE","where STUDENT_ROLLNUM=?",new String[]{rollNumber});
+            if(result==-1)
+            {
+                return false;
+            }
+            else return true;
+        }
+        else  return  true;
+    }
+
     public Cursor getData()
     {
         SQLiteDatabase db=this.getWritableDatabase();
