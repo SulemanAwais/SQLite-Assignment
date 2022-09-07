@@ -63,7 +63,23 @@ public class MainActivity extends  AppCompatActivity{
 
             }
         });
-        
+        UpdateStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String Student_name=name.getText().toString();
+                String Student_RollNum = rollNum.getText().toString();
+                Boolean isUpdated = db.Update(Student_name,Student_RollNum);
+                if (isUpdated == true) {
+                    Toast.makeText(getApplicationContext(), "STUDENT with roll number " + Student_RollNum + " has been updated", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "No entry updated", Toast.LENGTH_LONG).show();
+
+                }
+
+            }
+        });
                 viewStudents.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
