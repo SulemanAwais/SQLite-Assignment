@@ -10,6 +10,7 @@ import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ public class MainActivity extends  AppCompatActivity{
     Switch status;
     Button addStudentBtn;
     Button viewStudents;
+    ImageButton DeleteStudent;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class MainActivity extends  AppCompatActivity{
 
         viewStudents=findViewById(R.id.viewList);
         addStudentBtn=findViewById(R.id.AddButton);
+        DeleteStudent=findViewById(R.id.DeleteButton);
+
         DBHelper db =new DBHelper(this);
         addStudentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,32 +47,44 @@ public class MainActivity extends  AppCompatActivity{
 
             }
         });
-        viewStudents.setOnClickListener(new View.OnClickListener() {
+        DeleteStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Cursor c=db.getData();
-            if (c.getCount()==0)
-            {
-                Toast.makeText(getApplicationContext(),"NO DATA FOUND",Toast.LENGTH_LONG).show();
-                return;
-            }
-            else
-            {
-                StringBuffer stringBuffer=new StringBuffer();
-                AlertDialog.Builder alertBuilder=new AlertDialog.Builder(MainActivity.this);
-
-                while(c.moveToNext())
-                {
-                    stringBuffer.append("Name  :"+c.getString(1)+"\n");
-                    stringBuffer.append("Roll Number  :"+c.getString(2)+"\n");
+                String Student_RollNum = rollNum.getText().toString();
+                Boolean isDeleted = db.delete(Student_RollNum);
+                if (isDeleted == true) {
+                    Toast.makeText(getApplicationContext(), "STUDENT with roll number " + Student_RollNum + "has been deleted", Toast.LENGTH_LONG).show();
                 }
-                alertBuilder.setCancelable(true);
-                alertBuilder.setTitle("STUDENT LIST");
-                alertBuilder.setMessage(stringBuffer.toString());
-                alertBuilder.show();
-            }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "No entry  deleted", Toast.LENGTH_LONG).show();
+
+                }
+
             }
         });
+                viewStudents.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Cursor c = db.getData();
+                        if (c.getCount() == 0) {
+                            Toast.makeText(getApplicationContext(), "NO DATA FOUND", Toast.LENGTH_LONG).show();
+                            return;
+                        } else {
+                            StringBuffer stringBuffer = new StringBuffer();
+                            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
+
+                            while (c.moveToNext()) {
+                                stringBuffer.append("Name  :" + c.getString(1) + "\n");
+                                stringBuffer.append("Roll Number  :" + c.getString(2) + "\n");
+                            }
+                            alertBuilder.setCancelable(true);
+                            alertBuilder.setTitle("STUDENT LIST");
+                            alertBuilder.setMessage(stringBuffer.toString());
+                            alertBuilder.show();
+                        }
+                    }
+                });
 
 
     }

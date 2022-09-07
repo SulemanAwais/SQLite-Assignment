@@ -43,7 +43,6 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues values=new ContentValues();
         values.put("STUDENT_NAME",name);
         values.put("STUDENT_ROLLNUM",rollNum);
-        values.put("ENROLLED_STUDENT",status);
         long insert =db.insert("STUDENT_TABLE",null,values);
         if (insert==-1)
         {
@@ -56,16 +55,15 @@ public class DBHelper extends SQLiteOpenHelper {
     public  Boolean delete(String rollNumber){
         SQLiteDatabase db=this.getWritableDatabase();
         Cursor c=db.rawQuery("SELECT * from STUDENT_TABLE where STUDENT_ROLLNUM=?",new String[]{rollNumber});
-        if (c.getCount()>0)
-        {
-            long result=db.delete("STUDENT_TABLE","where STUDENT_ROLLNUM=?",new String[]{rollNumber});
+        if (c.getCount()>0){
+            long result=db.delete("STUDENT_TABLE"," STUDENT_ROLLNUM=?",new String[]{rollNumber});
             if(result==-1)
             {
                 return false;
             }
             else return true;
         }
-        else  return  true;
+        else  return  false;
     }
 
     public Cursor getData()

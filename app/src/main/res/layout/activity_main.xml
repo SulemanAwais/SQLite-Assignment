@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name"
-        android:textSize="24dp" />
+        android:textSize="24dp"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/studentRollNum"
@@ -45,5 +46,28 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
         android:text="View" />
+
+    <ImageButton
+        android:id="@+id/DeleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/studentRollNum"
+        android:layout_alignParentEnd="true"
+
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="49dp"
+        app:srcCompat="@android:drawable/ic_menu_delete"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/EditBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/DeleteButton"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="57dp"
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </RelativeLayout>
