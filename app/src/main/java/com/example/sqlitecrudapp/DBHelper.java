@@ -38,19 +38,21 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-    public Boolean Update(String name, String rollNum, Boolean status){
+    public Boolean Update(String name, String rollNumber){
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues values=new ContentValues();
         values.put("STUDENT_NAME",name);
-        values.put("STUDENT_ROLLNUM",rollNum);
-        long insert =db.insert("STUDENT_TABLE",null,values);
-        if (insert==-1)
-        {
-            return false;
+        values.put("STUDENT_ROLLNUM",rollNumber);
+        Cursor c=db.rawQuery("SELECT * from STUDENT_TABLE where STUDENT_ROLLNUM=?",new String[]{rollNumber});
+        if (c.getCount()>0){
+            long result=db. update("STUDENT_TABLE",values," STUDENT_ROLLNUM=?",new String[]{rollNumber});
+            if(result==-1)
+            {
+                return false;
+            }
+            else return true;
         }
-        else {
-            return true;
-        }
+        else  return  false;
     }
     public  Boolean delete(String rollNumber){
         SQLiteDatabase db=this.getWritableDatabase();

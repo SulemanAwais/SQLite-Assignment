@@ -3,10 +3,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +18,7 @@ public class MainActivity extends  AppCompatActivity{
     Button addStudentBtn;
     Button viewStudents;
     ImageButton DeleteStudent;
+    ImageButton UpdateStudent;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,6 +31,7 @@ public class MainActivity extends  AppCompatActivity{
         viewStudents=findViewById(R.id.viewList);
         addStudentBtn=findViewById(R.id.AddButton);
         DeleteStudent=findViewById(R.id.DeleteButton);
+        UpdateStudent=findViewById(R.id.UpdateBtn);
 
         DBHelper db =new DBHelper(this);
         addStudentBtn.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +53,7 @@ public class MainActivity extends  AppCompatActivity{
                 String Student_RollNum = rollNum.getText().toString();
                 Boolean isDeleted = db.delete(Student_RollNum);
                 if (isDeleted == true) {
-                    Toast.makeText(getApplicationContext(), "STUDENT with roll number " + Student_RollNum + "has been deleted", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "STUDENT with roll number " + Student_RollNum + " has been deleted", Toast.LENGTH_LONG).show();
                 }
                 else
                 {
@@ -63,6 +63,7 @@ public class MainActivity extends  AppCompatActivity{
 
             }
         });
+        
                 viewStudents.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
